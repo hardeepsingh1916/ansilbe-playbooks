@@ -1,0 +1,14 @@
+---
+- name: Error Handling in Ansible
+  hosts: all
+  tasks:
+   - block:
+      - name: Install tomcat7
+        apt:
+         name: tomcat7
+         state: present
+     rescue:
+      - name: Install tomcat9
+        apt:
+         name: tomcat9
+         state: absent

@@ -1,0 +1,10 @@
+---
+- name: Installing using Host Scope Variable
+  hosts: webserver
+  tasks:
+   - name: Installing Firewall on Server1
+     apt:
+      name: "{{a}}"
+      state: "{{b}}"
+      update_cache: "{{c}}"
+

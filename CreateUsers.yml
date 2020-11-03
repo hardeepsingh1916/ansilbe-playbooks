@@ -1,0 +1,17 @@
+
+---
+- name: Create a user on all managed nodes..
+  hosts: all
+  tasks: 
+   - name : Create a user
+     user:
+      name: Hardeep
+      password: Pass@123
+      uid: 1357
+      home: /home/Hardeep
+      shell: /bin/bash
+...
+
+
+
+

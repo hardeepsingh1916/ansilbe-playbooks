@@ -1,0 +1,15 @@
+---
+- name: copy a File from managed node1 to managed node2
+  hosts: 172.31.13.247
+  tasks:
+   - name: Fetch the File from the node1 
+     fetch:
+      src: /etc/tomcat9/tomcat-users.xml
+      dest: /home/ubuntu
+- name: Copy file from Contoller to node2
+  hosts: 172.31.4.17
+  tasks:
+   - name: Copy from controller to node
+     copy:
+       src: /home/ubuntu/172.31.13.247
+       dest: /home/ubuntu

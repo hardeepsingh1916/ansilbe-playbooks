@@ -1,0 +1,9 @@
+---
+- name: Instaling s/w on a single host
+  hosts: 172.31.4.17
+  tasks:
+   - name: Installing Firewall on Server2
+     apt: 
+      name: "{{a}}"
+      state: "{{b}}"
+      update_cache: "{{c}}"

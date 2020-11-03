@@ -1,0 +1,16 @@
+---
+- name: Tagging in Ansible
+  hosts: all
+  tasks: 
+   - name: Installing a tree
+     apt:
+      name: tree
+      state: present
+      update_cache: yes
+     tags: tree_installation
+   - name: Creating a user
+     user:
+      name: Apeksha
+      password: Pass@123
+      home: /home/ubuntu
+     tags: Creating_User

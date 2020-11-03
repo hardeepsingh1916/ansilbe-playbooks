@@ -1,0 +1,15 @@
+---
+- name: Create and Configure Users
+  hosts: all
+  tasks:
+   - name: create user
+     user:
+      name: "{{a}}"
+      password: "{{b}}"
+      uid: "{{c}}"
+      home: "{{d}}"
+      shell: "{{e}}"
+   - name: Create Dir/File
+     file:
+      name: "{{f}}"
+      state: "{{g}}"

@@ -1,0 +1,12 @@
+---
+- name: Installing / Uninstalling s/w 
+  hosts: all
+  tasks:
+   - name: Install/Unsintall
+     apt:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: no
+     with_items: 
+      - {a: git,b: present}
+      - {a: firewalld,b: present}

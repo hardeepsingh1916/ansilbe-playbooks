@@ -1,0 +1,37 @@
+---
+- name: Setup CI-CD pipeline using jenkins
+  hosts: webserver
+  tasks:
+   - name: Installing jenkins on the controller
+     apt:
+      name: "{{item.a}}"
+      state: present
+      update_cache: "{{item.b}}"
+     with_items:
+      - {a: openjdk-8-jdk,b: yes}
+      - {a: git,b: no}
+      - {a: maven,b: no} 
+   - name: Download the jenkins.war
+     get_url:
+      url: http://mirrors.jenkins.io/war-stable/2.235.5/jenkins.war
+      dest: /tmp
+- name: Setup Tomcat9 and Tomcat9-admin on qa Server
+  hosts: dbserver
+  tasks:
+   - name: Setup Tomcat9 and tomcat9 admin
+     apt:
+      name: "{{item.a}}"
+      state: present
+      update_cache: "{{item.b}}"
+     with_items:
+      - {a: tomcat9,b: yes}
+      - {a: tomcat9-admin,b: no}
+   - name: Copying the tomcat-user.xml file
+     copy:
+      src: /home/ubuntu/tomcat-users.xml
+      dest: /etc/tomcat9
+   - name: Retart tomcat9
+     service: 
+      name: tomcat9
+      state: restarted
+

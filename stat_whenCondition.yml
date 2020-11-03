@@ -1,0 +1,16 @@
+---
+- name: Saving info of a file in a variable
+  hosts: all
+  tasks:
+   - name: Saving stat in result variable 
+     stat:
+      path: /etc/ansible/hosts
+     register: result
+   - name: Displaying the value of result
+     debug:
+      var: result
+   - name: When condition
+     file:
+      name: /home/ubuntu/file1.txt
+      state: touch
+     when: result.stat.exists == true
